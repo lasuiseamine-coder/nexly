@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexly™ — The Phone Case That Changes With You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF8F3;
+  --bg-2:#F3EDE2;
+  --ink:#1A1410;
+  --ink-soft:#3D342C;
+  --muted:#7A6E63;
+  --line:#E8DFD0;
+  --accent:#6B4FA0;
+  --accent-2:#8B6FB8;
+  --accent-soft:#EFE9F5;
+  --gold:#C9A961;
+  --gold-soft:#F5EDD9;
+  --success:#4A7C59;
+  --shadow:0 20px 60px rgba(107,79,160,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.serif{font-family:'Fraunces',serif}
+.italic{font-style:italic}
+img{max-width:100%;display:block}
+
+/* ===== ANNOUNCEMENT ===== */
+.announce{
+  background:linear-gradient(90deg,#1A1410,#2D2419);
+  color:var(--bg);padding:11px 20px;text-align:center;
+  font-size:13px;letter-spacing:0.5px;font-weight:500;display:flex;
+  align-items:center;justify-content:center;gap:32px;overflow:hidden;
+}
+.announce span{display:flex;align-items:center;gap:8px}
+.announce-dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
+@media(max-width:768px){.announce{font-size:11px;gap:14px}.announce span:nth-child(3){display:none}}
+
+/* ===== NAV ===== */
+nav{
+  background:rgba(251,248,243,0.92);padding:20px 40px;display:flex;align-items:center;
+  justify-content:space-between;border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);
+}
+.logo{font-family:'Fraunces',serif;font-size:34px;letter-spacing:-1.5px;font-weight:500;text-decoration:none;color:var(--ink);font-style:italic}
+.logo sup{font-size:11px;font-family:'Inter',sans-serif;vertical-align:super;font-style:normal}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.3px;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:20px;align-items:center}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500}
+.cart-count{background:var(--accent);color:white;width:20px;height:20px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:600}
+@media(max-width:900px){.nav-links{display:none}nav{padding:16px 20px}}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#2A1F3D 0%,#3D2E5C 50%,#6B4FA0 100%);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-20%;
+  right:-10%;
+  width:60%;
+  height:140%;
+  background:radial-gradient(circle,rgba(201,169,97,0.25),transparent 60%);
+  z-index:1;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-30%;
+  left:-10%;
+  width:50%;
+  height:100%;
+  background:radial-gradient(circle,rgba(139,111,184,0.3),transparent 60%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;
+  z-index:3;
+  max-width:1400px;
+  margin:0 auto;
+  padding:80px 40px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-text{color:white}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:28px;
+  padding:8px 16px;border:1px solid rgba(201,169,97,0.4);border-radius:100px;
+  background:rgba(201,169,97,0.08);
+}
+.hero-eyebrow .pulse{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
+
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-size:92px;line-height:0.95;letter-spacing:-3px;
+  margin-bottom:28px;font-weight:400;color:white;
+}
+.hero h1 .accent{font-style:italic;color:var(--gold);font-weight:500}
+.hero-sub{
+  font-size:19px;color:rgba(255,255,255,0.85);
+  line-height:1.6;max-width:520px;margin-bottom:36px;font-weight:300;
+}
+.hero-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:white;color:var(--ink);padding:18px 36px;border:none;
+  border-radius:100px;font-size:15px;font-weight:600;letter-spacing:0.3px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:12px;
+  transition:all 0.3s;font-family:inherit;text-decoration:none;
+}
+.btn-primary:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px);box-shadow:0 15px 40px rgba(201,169,97,0.4)}
+.btn-secondary{
+  background:transparent;color:white;padding:18px 0;border:none;
+  font-size:15px;font-weight:500;cursor:pointer;display:inline-flex;
+  align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.4);
+  font-family:inherit;
+}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-rating{
+  display:flex;align-items:center;gap:14px;margin-top:40px;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,0.15);flex-wrap:wrap;
+}
+.stars{color:var(--gold);letter-spacing:3px;font-size:17px}
+.rating-text{font-size:13px;color:rgba(255,255,255,0.7)}
+.rating-text strong{color:white;font-weight:600}
+
+/* HERO VISUAL — REAL IMAGE */
+.hero-visual{
+  position:relative;aspect-ratio:1/1.1;
+  border-radius:32px;overflow:hidden;
+  box-shadow:0 60px 100px rgba(0,0,0,0.4);
+}
+.hero-visual img{width:100%;height:100%;object-fit:cover}
+.float-card{
+  position:absolute;background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);padding:14px 20px;border-radius:100px;
+  font-size:12px;font-weight:600;letter-spacing:0.5px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);display:flex;align-items:center;gap:10px;
+}
+.float-card.t1{top:30px;right:30px;animation:floatA 4s ease-in-out infinite}
+.float-card.t2{bottom:40px;left:30px;animation:floatB 5s ease-in-out infinite}
+.float-card .dot{width:7px;height:7px;background:var(--success);border-radius:50%}
+@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;padding:60px 20px}
+  .hero h1{font-size:54px;letter-spacing:-1.5px}
+  .hero-sub{font-size:16px}
+}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{
+  background:var(--ink);color:var(--bg);padding:26px 40px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:30px;align-items:center;
+}
+.trust-item{display:flex;align-items:center;gap:14px;justify-content:center}
+.trust-icon{width:30px;height:30px;flex-shrink:0;color:var(--gold)}
+.trust-text{font-size:13px;font-weight:500}
+.trust-text strong{display:block;font-size:15px;margin-bottom:2px;font-family:'Fraunces',serif;font-weight:500}
+@media(max-width:900px){.trust-bar{grid-template-columns:repeat(2,1fr);gap:20px;padding:24px 20px}}
+
+/* ===== LIFESTYLE STRIP ===== */
+.lifestyle-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg);
+}
+.ls-img{
+  aspect-ratio:1/1;position:relative;overflow:hidden;cursor:pointer;
+}
+.ls-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.ls-img:hover img{transform:scale(1.08)}
+.ls-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(26,20,16,0.7));
+}
+.ls-img span{
+  position:absolute;bottom:24px;left:24px;color:white;
+  font-family:'Fraunces',serif;font-style:italic;font-size:24px;
+  z-index:2;letter-spacing:-0.5px;font-weight:400;
+}
+@media(max-width:768px){.lifestyle-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== PRODUCT ===== */
+.product{
+  max-width:1400px;margin:0 auto;padding:100px 40px;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:80px;
+}
+.product-gallery{position:sticky;top:100px;height:fit-content}
+.gallery-main{
+  background:var(--bg-2);border-radius:28px;aspect-ratio:1/1;
+  margin-bottom:16px;overflow:hidden;position:relative;
+  box-shadow:var(--shadow);
+}
+.gallery-main img{
+  width:100%;height:100%;object-fit:cover;transition:transform 0.5s;
+}
+.gallery-main:hover img{transform:scale(1.04)}
+.gallery-badge{
+  position:absolute;top:20px;left:20px;
+  background:var(--gold);color:var(--ink);padding:8px 16px;
+  border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1.5px;z-index:2;
+}
+.gallery-badge.right{left:auto;right:20px;background:var(--ink);color:var(--gold)}
+
+.gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.thumb{
+  aspect-ratio:1/1;border-radius:16px;cursor:pointer;
+  border:2px solid transparent;transition:all 0.2s;overflow:hidden;
+  background:var(--bg-2);
+}
+.thumb:hover{border-color:var(--ink)}
+.thumb.active{border-color:var(--accent)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
+/* ===== PRODUCT INFO ===== */
+.product-info h1{
+  font-family:'Fraunces',serif;font-size:52px;letter-spacing:-1.5px;
+  line-height:1.05;margin-bottom:16px;font-weight:400;
+}
+.product-info h1 .italic{color:var(--accent);font-weight:500}
+.product-tagline{font-size:17px;color:var(--ink-soft);margin-bottom:20px;line-height:1.6}
+.product-rating{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap}
+.product-rating .stars{font-size:18px}
+.product-rating a{color:var(--ink);text-decoration:underline;font-size:14px;cursor:pointer}
+.verified-badge{
+  background:var(--success);color:white;padding:4px 12px;
+  border-radius:100px;font-size:11px;font-weight:600;letter-spacing:0.5px;
+}
+
+.price-block{
+  background:linear-gradient(135deg,var(--accent-soft),var(--bg-2));
+  padding:26px 30px;border-radius:20px;margin-bottom:32px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;border:1px solid rgba(107,79,160,0.15);
+}
+.price-now{
+  font-family:'Fraunces',serif;font-size:46px;font-weight:500;
+  letter-spacing:-1.5px;color:var(--ink);
+}
+.price-was{
+  text-decoration:line-through;color:var(--muted);
+  font-size:18px;margin-left:12px;font-family:'Inter',sans-serif;
+}
+.save-tag{
+  background:var(--accent);color:white;padding:10px 18px;
+  border-radius:100px;font-size:13px;font-weight:600;letter-spacing:0.3px;
+}
+.installments{font-size:13px;color:var(--ink-soft);margin-top:6px}
+
+/* ===== SELECTORS ===== */
+.selector-block{margin-bottom:30px}
+.selector-label{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+}
+.selector-label h3{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--ink-soft);
+}
+.selector-current{font-size:13px;color:var(--accent);font-weight:600}
+
+.phone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.phone-option{
+  padding:14px 10px;background:white;border:1.5px solid var(--line);
+  border-radius:14px;cursor:pointer;text-align:center;
+  font-size:13px;font-weight:500;transition:all 0.2s;font-family:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink);
+}
+.phone-option:hover{border-color:var(--ink);background:var(--bg-2)}
+.phone-option.active{
+  border-color:var(--accent);background:var(--accent);color:white;
+  box-shadow:0 8px 20px rgba(107,79,160,0.25);
+}
+.iphone-icon{
+  width:18px;height:28px;border:2px solid currentColor;
+  border-radius:5px;position:relative;
+}
+.iphone-icon::before{
+  content:"";position:absolute;top:2px;left:50%;
+  transform:translateX(-50%);width:6px;height:2px;
+  background:currentColor;border-radius:2px;
+}
+
+.color-grid{display:flex;gap:14px;flex-wrap:wrap}
+.color-option{
+  width:48px;height:48px;border-radius:50%;cursor:pointer;
+  border:2px solid var(--line);position:relative;transition:all 0.2s;
+}
+.color-option:hover{transform:scale(1.08)}
+.color-option.active{border-color:var(--ink);box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--ink)}
+.c-black{background:#0a0a0a}
+.c-cream{background:linear-gradient(135deg,#F2EFE7,#D8CFB8)}
+.c-rose{background:linear-gradient(135deg,#E8A09A,#C97870)}
+.c-purple{background:linear-gradient(135deg,#8B6FB8,#5C3F8C)}
+.c-gold{background:linear-gradient(135deg,#E0C078,#9C7C45)}
+
+/* ===== QTY + CART ===== */
+.qty-cart{display:flex;gap:12px;margin-bottom:14px}
+.qty-control{
+  display:flex;align-items:center;border:1.5px solid var(--ink);
+  border-radius:100px;overflow:hidden;
+}
+.qty-btn{width:50px;height:58px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--ink);font-family:inherit}
+.qty-input{width:50px;border:none;text-align:center;font-size:16px;font-weight:600;background:none;font-family:inherit}
+.btn-add-cart{
+  flex:1;background:var(--ink);color:var(--bg);border:none;
+  border-radius:100px;font-size:15px;font-weight:600;letter-spacing:0.3px;
+  cursor:pointer;height:58px;transition:all 0.3s;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.btn-add-cart:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 12px 30px rgba(107,79,160,0.3)}
+.btn-add-cart .price-tag{
+  background:rgba(255,255,255,0.18);padding:5px 12px;
+  border-radius:100px;font-size:13px;
+}
+.btn-buy-now{
+  background:linear-gradient(135deg,#635BFF,#4339D8);
+  color:white;border:none;border-radius:100px;
+  font-size:15px;font-weight:600;cursor:pointer;height:58px;width:100%;
+  margin-bottom:24px;font-family:inherit;display:flex;
+  align-items:center;justify-content:center;gap:10px;transition:all 0.3s;
+}
+.btn-buy-now:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(99,91,255,0.35)}
+.btn-buy-now svg{height:18px}
+
+/* ===== STOCK & URGENCY ===== */
+.stock-indicator{
+  background:linear-gradient(90deg,rgba(201,169,97,0.12),rgba(201,169,97,0.02));
+  border-left:3px solid var(--gold);padding:14px 18px;
+  border-radius:10px;margin-bottom:24px;font-size:14px;
+}
+.stock-indicator strong{color:var(--ink)}
+.stock-bar{
+  width:100%;height:4px;background:rgba(201,169,97,0.2);
+  border-radius:100px;margin-top:8px;overflow:hidden;
+}
+.stock-fill{width:22%;height:100%;background:var(--gold);border-radius:100px;animation:pulse 2s infinite}
+
+.urgency-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.urgency-card{
+  background:white;border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;display:flex;align-items:center;gap:12px;font-size:13px;
+}
+.urgency-icon{width:28px;height:28px;flex-shrink:0;color:var(--accent)}
+.urgency-card strong{display:block;font-size:14px;margin-bottom:2px}
+.urgency-card span{color:var(--muted);font-size:12px}
+
+.guarantee-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line);padding-top:24px;
+}
+.guarantee-item{text-align:center;padding:0 12px;border-right:1px solid var(--line)}
+.guarantee-item:last-child{border-right:none}
+.guarantee-icon{width:32px;height:32px;margin:0 auto 10px;color:var(--accent)}
+.guarantee-item strong{font-size:13px;display:block;margin-bottom:4px;font-family:'Fraunces',serif;font-weight:500}
+.guarantee-item span{font-size:11px;color:var(--muted);line-height:1.4}
+
+/* SECURE CHECKOUT BADGE */
+.secure-badge{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px;background:var(--bg-2);border-radius:12px;
+  margin-bottom:24px;font-size:12px;color:var(--ink-soft);font-weight:500;
+}
+.secure-badge svg{width:14px;height:14px;color:var(--success)}
+.secure-badge .stripe-logo{font-weight:700;color:#635BFF;letter-spacing:-0.5px}
+
+@media(max-width:900px){
+  .product{grid-template-columns:1fr;padding:60px 20px;gap:48px}
+  .product-gallery{position:static}
+  .product-info h1{font-size:38px}
+  .phone-grid{grid-template-columns:repeat(2,1fr)}
+  .urgency-row{grid-template-columns:1fr}
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-section{
+  background:linear-gradient(180deg,#1A1410 0%,#2A1F3D 100%);
+  color:var(--bg);padding:120px 40px;position:relative;overflow:hidden;
+}
+.how-section::before{
+  content:"";position:absolute;top:-100px;right:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(201,169,97,0.15),transparent);
+  border-radius:50%;
+}
+.how-container{max-width:1200px;margin:0 auto;position:relative}
+.section-eyebrow{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+}
+.section-eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+.section-title{
+  font-family:'Fraunces',serif;font-size:72px;line-height:1;
+  letter-spacing:-2.5px;margin-bottom:60px;font-weight:400;max-width:800px;
+}
+.section-title .italic{font-style:italic;color:var(--gold);font-weight:500}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.step-img{
+  width:100%;aspect-ratio:1/1;border-radius:24px;overflow:hidden;
+  margin-bottom:24px;background:#2a2a2a;
+}
+.step-img img{width:100%;height:100%;object-fit:cover}
+.step-number{
+  font-family:'Fraunces',serif;font-size:14px;line-height:1;
+  color:var(--gold);font-style:italic;margin-bottom:14px;
+  display:inline-block;padding:8px 18px;
+  border:1px solid var(--gold);border-radius:100px;font-weight:500;
+}
+.step h3{font-size:24px;font-weight:500;margin-bottom:14px;letter-spacing:-0.5px;font-family:'Fraunces',serif}
+.step p{color:rgba(251,248,243,0.7);line-height:1.7;font-size:15px}
+@media(max-width:900px){
+  .how-section{padding:80px 20px}
+  .section-title{font-size:46px}
+  .steps{grid-template-columns:1fr;gap:48px}
+}
+
+/* ===== FEATURES ===== */
+.features{padding:120px 40px;max-width:1400px;margin:0 auto}
+.features-header{text-align:center;margin-bottom:80px}
+.features-header .section-eyebrow{justify-content:center;color:var(--accent)}
+.features-header .section-eyebrow::before{background:var(--accent)}
+.features-header .section-title{margin:0 auto;color:var(--ink)}
+.features-header .section-title .italic{color:var(--accent)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{
+  background:white;border-radius:28px;padding:0;
+  border:1px solid var(--line);transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.feature-card:hover{transform:translateY(-8px);box-shadow:0 40px 80px rgba(107,79,160,0.12)}
+.feature-card.big{grid-column:span 2}
+.feature-img{width:100%;aspect-ratio:16/9;background:var(--bg-2);overflow:hidden}
+.feature-card.big .feature-img{aspect-ratio:21/9}
+.feature-img img{width:100%;height:100%;object-fit:cover}
+.feature-body{padding:32px}
+.feature-icon{
+  width:50px;height:50px;background:var(--accent-soft);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;color:var(--accent);
+}
+.feature-card h3{
+  font-family:'Fraunces',serif;font-size:30px;letter-spacing:-0.8px;
+  line-height:1.1;margin-bottom:14px;font-weight:500;
+}
+.feature-card.big h3{font-size:40px}
+.feature-card p{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.feature-card.big p{font-size:17px;max-width:600px}
+@media(max-width:900px){
+  .features{padding:80px 20px}
+  .features-grid{grid-template-columns:1fr}
+  .feature-card.big{grid-column:span 1}
+  .feature-card.big h3{font-size:32px}
+}
+
+/* ===== COMPARE ===== */
+.compare-section{background:var(--bg-2);padding:100px 40px}
+.compare-container{max-width:1100px;margin:0 auto}
+.compare-table{
+  background:white;border-radius:28px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.06);
+}
+.compare-header{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--ink);color:var(--bg)}
+.compare-header > div{padding:30px 24px;font-size:15px;font-weight:600;text-align:center}
+.compare-header > div:first-child{text-align:left}
+.compare-header .nexly-col{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  font-family:'Fraunces',serif;font-size:24px;font-weight:500;font-style:italic;
+}
+.compare-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;border-bottom:1px solid var(--line)}
+.compare-row:last-child{border-bottom:none}
+.compare-row > div{padding:22px 24px;text-align:center;font-size:14px;display:flex;align-items:center;justify-content:center}
+.compare-row > div:first-child{text-align:left;font-weight:600;justify-content:flex-start}
+.compare-row .nexly-col{background:rgba(107,79,160,0.04)}
+.check{color:var(--success);font-size:20px;font-weight:bold}
+.x-mark{color:#C44;font-size:18px}
+@media(max-width:768px){
+  .compare-section{padding:60px 20px}
+  .compare-header > div,.compare-row > div{padding:14px 10px;font-size:12px}
+}
+
+/* ===== REVIEWS ===== */
+.reviews-section{padding:120px 40px;max-width:1400px;margin:0 auto}
+.reviews-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:60px;flex-wrap:wrap;gap:24px;
+}
+.reviews-header .section-eyebrow{color:var(--accent)}
+.reviews-header .section-eyebrow::before{background:var(--accent)}
+.reviews-stats{display:flex;align-items:center;gap:24px}
+.big-rating{font-family:'Fraunces',serif;font-size:72px;line-height:1;font-weight:500}
+.rating-detail .stars{font-size:20px;display:block;margin-bottom:6px}
+.rating-detail span{font-size:14px;color:var(--muted)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review-card{
+  background:white;border:1px solid var(--line);
+  border-radius:24px;overflow:hidden;transition:all 0.3s;
+}
+.review-card:hover{box-shadow:0 30px 60px rgba(0,0,0,0.06);transform:translateY(-4px)}
+.review-img{width:100%;aspect-ratio:1/1;background:var(--bg-2);overflow:hidden}
+.review-img img{width:100%;height:100%;object-fit:cover}
+.review-body{padding:28px}
+.review-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:16px}
+.review-card h4{
+  font-family:'Fraunces',serif;font-size:24px;letter-spacing:-0.5px;
+  margin-bottom:12px;font-weight:500;
+}
+.review-card p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-bottom:24px}
+.reviewer{display:flex;align-items:center;gap:14px}
+.reviewer-avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;color:white;font-size:14px;letter-spacing:0.5px;
+}
+.reviewer-info strong{display:block;font-size:14px;margin-bottom:2px}
+.reviewer-info span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.verified-mini{color:var(--success);font-size:11px;font-weight:600}
+@media(max-width:900px){
+  .reviews-section{padding:80px 20px}
+  .reviews-grid{grid-template-columns:1fr}
+  .big-rating{font-size:56px}
+}
+
+/* ===== PRESS BAR ===== */
+.press-section{
+  padding:50px 40px;background:var(--bg-2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.press-container{max-width:1200px;margin:0 auto;text-align:center}
+.press-label{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;font-weight:600;
+}
+.press-logos{display:flex;justify-content:space-around;align-items:center;gap:40px;flex-wrap:wrap}
+.press-logo{
+  font-family:'Fraunces',serif;font-size:26px;color:var(--ink);
+  opacity:0.5;letter-spacing:-0.5px;font-weight:400;transition:opacity 0.3s;
+}
+.press-logo:hover{opacity:1;color:var(--accent)}
+.press-logo.bold{font-family:'Inter',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px}
+.press-logo.italic{font-style:italic}
+
+/* ===== FAQ ===== */
+.faq-section{padding:120px 40px;max-width:900px;margin:0 auto}
+.faq-header{text-align:center;margin-bottom:60px}
+.faq-header .section-eyebrow{justify-content:center;color:var(--accent)}
+.faq-header .section-eyebrow::before{background:var(--accent)}
+.faq-header .section-title{margin:0 auto;color:var(--ink)}
+.faq-header .section-title .italic{color:var(--accent)}
+.faq-item{border-bottom:1px solid var(--line);padding:26px 0;cursor:pointer}
+.faq-question{display:flex;justify-content:space-between;align-items:center;gap:24px}
+.faq-question h3{font-size:19px;font-weight:500;letter-spacing:-0.3px;font-family:'Fraunces',serif}
+.faq-toggle{
+  width:38px;height:38px;border-radius:50%;background:var(--accent-soft);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:18px;transition:all 0.3s;color:var(--accent);
+}
+.faq-item.open .faq-toggle{background:var(--accent);color:white;transform:rotate(45deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.4s ease;
+  color:var(--ink-soft);font-size:15px;line-height:1.7;
+}
+.faq-item.open .faq-answer{max-height:300px;padding-top:18px}
+@media(max-width:768px){.faq-section{padding:80px 20px}}
+
+/* ===== FINAL CTA ===== */
+.final-cta{
+  position:relative;padding:120px 40px;text-align:center;
+  color:white;overflow:hidden;
+  background:linear-gradient(135deg,#2A1F3D 0%,#6B4FA0 100%);
+}
+.final-cta::before{
+  content:"";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);width:800px;height:800px;
+  background:radial-gradient(circle,rgba(201,169,97,0.15),transparent 60%);
+  border-radius:50%;
+}
+.final-cta-content{max-width:800px;margin:0 auto;position:relative;z-index:2}
+.final-cta h2{
+  font-family:'Fraunces',serif;font-size:78px;line-height:1;
+  letter-spacing:-2.5px;margin-bottom:24px;font-weight:400;
+}
+.final-cta h2 .italic{font-style:italic;color:var(--gold);font-weight:500}
+.final-cta p{
+  font-size:19px;margin-bottom:40px;opacity:0.9;
+  max-width:560px;margin-left:auto;margin-right:auto;
+}
+@media(max-width:768px){.final-cta{padding:80px 20px}.final-cta h2{font-size:46px}}
+
+/* ===== FOOTER ===== */
+footer{background:var(--ink);color:var(--bg);padding:80px 40px 30px}
+.footer-grid{
+  max-width:1200px;margin:0 auto;display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:60px;margin-bottom:60px;
+}
+.footer-brand .logo{color:var(--bg);margin-bottom:16px;display:block}
+.footer-brand p{
+  color:rgba(251,248,243,0.6);font-size:14px;line-height:1.7;
+  margin-bottom:20px;max-width:300px;
+}
+.social-row{display:flex;gap:12px}
+.social-icon{
+  width:40px;height:40px;border:1px solid rgba(251,248,243,0.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--bg);cursor:pointer;transition:all 0.2s;
+}
+.social-icon:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.footer-col h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-weight:600;color:var(--gold)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:12px}
+.footer-col a{color:rgba(251,248,243,0.6);text-decoration:none;font-size:14px;transition:color 0.2s;cursor:pointer}
+.footer-col a:hover{color:var(--gold)}
+.newsletter input{
+  width:100%;padding:14px 18px;background:rgba(251,248,243,0.05);
+  border:1px solid rgba(251,248,243,0.15);border-radius:100px;
+  color:var(--bg);font-size:14px;margin-bottom:12px;font-family:inherit;
+}
+.newsletter input::placeholder{color:rgba(251,248,243,0.4)}
+.newsletter button{
+  width:100%;padding:14px;background:var(--gold);color:var(--ink);
+  border:none;border-radius:100px;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:all 0.2s;
+}
+.newsletter button:hover{background:white}
+.footer-bottom{
+  max-width:1200px;margin:0 auto;padding-top:30px;
+  border-top:1px solid rgba(251,248,243,0.1);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:20px;
+}
+.footer-bottom p{font-size:13px;color:rgba(251,248,243,0.5)}
+.payment-icons{display:flex;gap:8px;flex-wrap:wrap}
+.payment-icon{
+  width:42px;height:26px;background:white;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--ink);letter-spacing:-0.5px;
+}
+.payment-icon.stripe{background:#635BFF;color:white;font-size:10px}
+@media(max-width:900px){
+  footer{padding:60px 20px 30px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+/* ===== STICKY MOBILE ===== */
+.sticky-atc{
+  position:fixed;bottom:0;left:0;right:0;background:white;
+  border-top:1px solid var(--line);padding:14px 16px;display:none;
+  z-index:99;align-items:center;gap:12px;
+  box-shadow:0 -10px 30px rgba(0,0,0,0.08);
+}
+.sticky-atc .price{font-family:'Fraunces',serif;font-size:24px;font-weight:500}
+.sticky-atc button{
+  flex:1;background:var(--ink);color:var(--bg);border:none;
+  border-radius:100px;padding:14px;font-weight:600;font-family:inherit;font-size:14px;
+}
+@media(max-width:768px){.sticky-atc{display:flex}}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  <span><span class="announce-dot"></span> FREE Worldwide Shipping</span>
+  <span>30-Day Money-Back Guarantee</span>
+  <span>Limited Edition Drop — Going Fast</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Nexly<sup>™</sup></a>
+  <ul class="nav-links">
+    <li><a href="#product">Shop</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#">Track Order</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="icon-btn" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow"><span class="pulse"></span> New Drop · Limited Edition</div>
+      <h1>The Phone Case<br>That Changes<br><span class="accent">With You.</span></h1>
+      <p class="hero-sub">Nexly™ NFC Smart Ink Case transforms your iPhone into a living canvas. One tap — your design refreshes. No batteries. No cables. Pure magic.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">
+          Shop Now — $35
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <button class="btn-secondary">
+          Watch Demo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="hero-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text"><strong>4.9/5</strong> from 12,847 happy customers</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200&q=80" alt="Nexly iPhone Case">
+      <div class="float-card t1"><span class="dot"></span> NFC Active</div>
+      <div class="float-card t2">⚡ Instant Refresh</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l5 5L20 7"/></svg>
+    <div class="trust-text"><strong>30,000+</strong>Cases Sold</div>
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+    <div class="trust-text"><strong>Free Shipping</strong>Worldwide</div>
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4M21 12c0 1.5-.7 3-1.7 4.1L12 22l-7.3-5.9C3.7 15 3 13.5 3 12V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="trust-text"><strong>Secure</strong>Stripe Checkout</div>
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 11-6.2-8.5"/><path d="M21 3v6h-6"/></svg>
+    <div class="trust-text"><strong>30-Day</strong>Money-Back</div>
+  </div>
+</div>
+
+<!-- LIFESTYLE STRIP -->
+<section class="lifestyle-strip">
+  <div class="ls-img">
+    <img src="https://images.unsplash.com/photo-1611791484670-ce19b801d192?w=800&q=80" alt="">
+    <span>Express yourself.</span>
+  </div>
+  <div class="ls-img">
+    <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=800&q=80" alt="">
+    <span>One tap. New look.</span>
+  </div>
+  <div class="ls-img">
+    <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&q=80" alt="">
+    <span>Zero charging.</span>
+  </div>
+  <div class="ls-img">
+    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800&q=80" alt="">
+    <span>Infinite styles.</span>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product" id="product">
+  <div class="product-gallery">
+    <div class="gallery-main">
+      <span class="gallery-badge">NEW</span>
+      <span class="gallery-badge right">360°</span>
+      <img id="mainImg" src="https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200&q=85" alt="Nexly Case">
+    </div>
+    <div class="gallery-thumbs">
+      <div class="thumb active" onclick="changeImage(this,'https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200&q=85')">
+        <img src="https://images.unsplash.com/photo-1592890288564-76628a30a657?w=400&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImage(this,'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=1200&q=85')">
+        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImage(this,'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200&q=85')">
+        <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImage(this,'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=1200&q=85')">
+        <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400&q=80" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h1>Nexly™ E-Ink<br><span class="italic">Smart iPhone Case</span></h1>
+    <p class="product-tagline">The world's first NFC-powered iPhone case with a built-in e-ink display. Change your design in one tap. No charging. Ever.</p>
+    
+    <div class="product-rating">
+      <span class="stars">★★★★★</span>
+      <a href="#reviews"><strong>4.9</strong> · 2,341 verified reviews</a>
+      <span class="verified-badge">✓ Verified Authentic</span>
+    </div>
+
+    <div class="price-block">
+      <div>
+        <div>
+          <span class="price-now">$35<span style="font-size:24px">.00</span></span>
+          <span class="price-was">$69.99</span>
+        </div>
+        <div class="installments">or 4 interest-free payments of $8.75 with <strong>Klarna</strong></div>
+      </div>
+      <span class="save-tag">Save 50%</span>
+    </div>
+
+    <!-- iPhone MODELS -->
+    <div class="selector-block">
+      <div class="selector-label">
+        <h3>Select Your iPhone Model</h3>
+        <span class="selector-current" id="modelLabel">iPhone 16 Pro Max</span>
+      </div>
+      <div class="phone-grid">
+        <button class="phone-option" onclick="selectModel(this,'iPhone 17 Pro Max')"><span class="iphone-icon"></span>17 Pro Max</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 17 Pro')"><span class="iphone-icon"></span>17 Pro</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 17')"><span class="iphone-icon"></span>17</button>
+        <button class="phone-option active" onclick="selectModel(this,'iPhone 16 Pro Max')"><span class="iphone-icon"></span>16 Pro Max</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 16 Pro')"><span class="iphone-icon"></span>16 Pro</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 16 Plus')"><span class="iphone-icon"></span>16 Plus</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 16')"><span class="iphone-icon"></span>16</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 15 Pro Max')"><span class="iphone-icon"></span>15 Pro Max</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 15 Pro')"><span class="iphone-icon"></span>15 Pro</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 15 Plus')"><span class="iphone-icon"></span>15 Plus</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 15')"><span class="iphone-icon"></span>15</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 14 Pro Max')"><span class="iphone-icon"></span>14 Pro Max</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 14 Pro')"><span class="iphone-icon"></span>14 Pro</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 14 Plus')"><span class="iphone-icon"></span>14 Plus</button>
+        <button class="phone-option" onclick="selectModel(this,'iPhone 14')"><span class="iphone-icon"></span>14</button>
+      </div>
+    </div>
+
+    <!-- COLORS -->
+    <div class="selector-block">
+      <div class="selector-label">
+        <h3>Choose Frame Color</h3>
+        <span class="selector-current" id="colorLabel">Midnight Black</span>
+      </div>
+      <div class="color-grid">
+        <div class="color-option c-black active" onclick="selectColor(this,'Midnight Black')" title="Midnight Black"></div>
+        <div class="color-option c-cream" onclick="selectColor(this,'Cream Ivory')" title="Cream Ivory"></div>
+        <div class="color-option c-rose" onclick="selectColor(this,'Rose Quartz')" title="Rose Quartz"></div>
+        <div class="color-option c-purple" onclick="selectColor(this,'Royal Violet')" title="Royal Violet"></div>
+        <div class="color-option c-gold" onclick="selectColor(this,'Champagne Gold')" title="Champagne Gold"></div>
+      </div>
+    </div>
+
+    <!-- STOCK -->
+    <div class="stock-indicator">
+      <strong>✨ Only 17 left at this price</strong>
+      <div class="stock-bar"><div class="stock-fill"></div></div>
+    </div>
+
+    <!-- URGENCY -->
+    <div class="urgency-row">
+      <div class="urgency-card">
+        <svg class="urgency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <div><strong>Free Shipping</strong><span>On all orders worldwide</span></div>
+      </div>
+      <div class="urgency-card">
+        <svg class="urgency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div><strong>Free Returns</strong><span>30 days, no questions</span></div>
+      </div>
+    </div>
+
+    <!-- QTY + CART -->
+    <div class="qty-cart">
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input class="qty-input" id="qtyInput" value="1" readonly>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-add-cart" onclick="addToCart()">
+        Add to Cart
+        <span class="price-tag">$35.00</span>
+      </button>
+    </div>
+    <button class="btn-buy-now" onclick="checkout()">
+      Pay Securely with
+      <svg viewBox="0 0 60 25" fill="currentColor"><text x="0" y="20" font-family="Arial" font-size="22" font-weight="900" fill="currentColor">Stripe</text></svg>
+    </button>
+
+    <!-- STRIPE SECURE BADGE -->
+    <div class="secure-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      256-bit SSL encrypted · Powered by <span class="stripe-logo">Stripe</span>
+    </div>
+
+    <!-- GUARANTEES -->
+    <div class="guarantee-row">
+      <div class="guarantee-item">
+        <svg class="guarantee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>
+        <strong>Authentic</strong>
+        <span>Verified Original</span>
+      </div>
+      <div class="guarantee-item">
+        <svg class="guarantee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <strong>2-Year</strong>
+        <span>Full Warranty</span>
+      </div>
+      <div class="guarantee-item">
+        <svg class="guarantee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <strong>24/7</strong>
+        <span>Customer Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-container">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Three taps from boring<br>to <span class="italic">brilliant.</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="">
+        </div>
+        <span class="step-number">Step 01</span>
+        <h3>Open The App</h3>
+        <p>Browse thousands of designs in our free Nexly app, or upload your own photos, artwork, or custom text. Free for life.</p>
+      </div>
+      <div class="step">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1611224885990-ab7363d7f2a9?w=800&q=80" alt="">
+        </div>
+        <span class="step-number">Step 02</span>
+        <h3>Tap & Transfer</h3>
+        <p>Place your iPhone against the case. NFC technology beams your design to the e-ink display in under 2 seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-img">
+          <img src="https://images.unsplash.com/photo-1592286927505-1def25115481?w=800&q=80" alt="">
+        </div>
+        <span class="step-number">Step 03</span>
+        <h3>Show Off</h3>
+        <p>Your new design stays without using any power. Switch it as often as your mood — zero battery, zero limits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-header">
+    <div class="section-eyebrow">Why Nexly</div>
+    <h2 class="section-title">Engineered to <span class="italic">stand out.</span></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card big">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=1400&q=80" alt="">
+      </div>
+      <div class="feature-body">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/></svg>
+        </div>
+        <h3>Zero Battery,<br>Infinite Designs.</h3>
+        <p>Powered by next-generation E-Ink technology, the display only uses energy when refreshing. Once set, your design stays — for weeks, months, even years. No charging cable, no battery anxiety. Just pure, paper-like beauty on the back of your phone.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=800&q=80" alt="">
+      </div>
+      <div class="feature-body">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+        </div>
+        <h3>NFC Tap-to-Sync</h3>
+        <p>One simple tap updates your case in under 2 seconds. No Bluetooth pairing, no Wi-Fi setup needed.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=800&q=80" alt="">
+      </div>
+      <div class="feature-body">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Drop-Tested Protection</h3>
+        <p>Survives 10ft drops. TPU shock-absorbing edges protect your iPhone through everyday life.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=800&q=80" alt="">
+      </div>
+      <div class="feature-body">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>iPhone 14–17 Compatible</h3>
+        <p>Perfect fit for every model from iPhone 14 to the latest 17 Pro Max. Every contour, exactly right.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-img">
+        <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=800&q=80" alt="">
+      </div>
+      <div class="feature-body">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg>
+        </div>
+        <h3>MagSafe Compatible</h3>
+        <p>Fully compatible with MagSafe accessories and Qi wireless charging. The case stays on while you charge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare-section">
+  <div class="compare-container">
+    <div class="features-header">
+      <div class="section-eyebrow" style="justify-content:center">The Difference</div>
+      <h2 class="section-title" style="color:var(--ink)">Why settle for <span class="italic">ordinary?</span></h2>
+    </div>
+    <div class="compare-table">
+      <div class="compare-header">
+        <div>Feature</div>
+        <div>Regular Cases</div>
+        <div class="nexly-col">Nexly™</div>
+      </div>
+      <div class="compare-row">
+        <div>Customizable Design</div>
+        <div><span class="x-mark">✕</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div>E-Ink Display</div>
+        <div><span class="x-mark">✕</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div>Zero Battery Use</div>
+        <div><span class="x-mark">✕</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div>NFC Instant Update</div>
+        <div><span class="x-mark">✕</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div>Drop Protection</div>
+        <div>Basic</div>
+        <div class="nexly-col"><strong>Reinforced</strong></div>
+      </div>
+      <div class="compare-row">
+        <div>MagSafe Compatible</div>
+        <div><span class="check">✓</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div>30-Day Money-Back</div>
+        <div><span class="x-mark">✕</span></div>
+        <div class="nexly-col"><span class="check">✓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press-section">
+  <div class="press-container">
+    <div class="press-label">As Featured In</div>
+    <div class="press-logos">
+      <span class="press-logo italic">PureWow</span>
+      <span class="press-logo bold">BUSTLE</span>
+      <span class="press-logo">T3</span>
+      <span class="press-logo bold">TechRadar</span>
+      <span class="press-logo italic">Mashable</span>
+      <span class="press-logo bold">FORBES</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="reviews-header">
+    <div>
+      <div class="section-eyebrow">Customer Stories</div>
+      <h2 class="section-title" style="color:var(--ink);margin-bottom:0">Loved by <span class="italic">thousands.</span></h2>
+    </div>
+    <div class="reviews-stats">
+      <span class="big-rating">4.9</span>
+      <div class="rating-detail">
+        <span class="stars">★★★★★</span>
+        <span>Based on 2,341 verified reviews</span>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-img">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80" alt="">
+      </div>
+      <div class="review-body">
+        <div class="review-stars">★★★★★</div>
+        <h4>"Everyone asks where I got it."</h4>
+        <p>I've been using my Nexly case for 3 months. Switch designs almost every day. The e-ink quality is way better than I expected — looks like a real printed image, not a screen.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JC</div>
+          <div class="reviewer-info">
+            <strong>Jessica C.</strong>
+            <span><span class="verified-mini">✓</span> Verified · Los Angeles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-img">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="">
+      </div>
+      <div class="review-body">
+        <div class="review-stars">★★★★★</div>
+        <h4>"Honestly worth every dollar."</h4>
+        <p>Was skeptical at first — thought it was just a gimmick. But the NFC tap genuinely works in 2 seconds, and the case has survived 4 drops already. Best phone accessory I've bought all year.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MR</div>
+          <div class="reviewer-info">
+            <strong>Marcus R.</strong>
+            <span><span class="verified-mini">✓</span> Verified · London</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-img">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80" alt="">
+      </div>
+      <div class="review-body">
+        <div class="review-stars">★★★★★</div>
+        <h4>"A case with personality."</h4>
+        <p>I'm an artist and I love showing off my work. Now my phone case is my portfolio. Quality is premium, packaging is gorgeous, and customer service responded in 2 hours when I had a question.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">AL</div>
+          <div class="reviewer-info">
+            <strong>Anne L.</strong>
+            <span><span class="verified-mini">✓</span> Verified · Toronto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-header">
+    <div class="section-eyebrow" style="justify-content:center">Got Questions?</div>
+    <h2 class="section-title" style="color:var(--ink)">Answers, <span class="italic">clearly.</span></h2>
+  </div>
+  <div class="faq-item open" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>How exactly does the NFC display work?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Your iPhone uses NFC (Near Field Communication) to send an image to the e-ink panel inside the case. Open our free Nexly app, choose a design, then tap your iPhone against the case. In under 2 seconds, the new image is locked in — no Bluetooth pairing, no Wi-Fi needed, no electricity required after the transfer.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>Does the case need to be charged?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Never. E-ink technology only uses power during the image refresh. Once your design is set, it stays on display for months without consuming any energy. The case has no battery, no charging port, nothing to plug in.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>Can I use my own photos and designs?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Absolutely. Upload personal photos, your own artwork, custom text, or memes through the free Nexly app. You can also browse thousands of professionally designed templates in our library — updated weekly.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>Is it compatible with MagSafe and wireless charging?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Yes. Nexly works perfectly with MagSafe accessories and Qi wireless chargers. Charge your iPhone normally — the case stays on.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>Which iPhone models are supported?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Nexly is available for iPhone 14, 14 Plus, 14 Pro, 14 Pro Max, 15, 15 Plus, 15 Pro, 15 Pro Max, 16, 16 Plus, 16 Pro, 16 Pro Max, 17, 17 Pro, and 17 Pro Max. Just select your model at checkout.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>What's your return policy?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">If you don't love your Nexly within 30 days, we'll refund you fully — no questions, no hassle. Plus a 2-year warranty against any manufacturing defects.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-question">
+      <h3>Is checkout secure?</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">Absolutely. All payments are processed through Stripe — the same payment system used by Amazon, Shopify, and Google. Your card information is encrypted with 256-bit SSL and never stored on our servers.</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-content">
+    <h2>Your iPhone deserves<br>a <span class="italic">personality.</span></h2>
+    <p>Join 30,000+ customers who refuse to settle for a boring case. Limited stock — once it's gone, it's gone.</p>
+    <a class="btn-primary" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">
+      Get Yours — $35
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">Nexly<sup>™</sup></a>
+      <p>Turning ordinary iPhones into living canvases. One NFC tap at a time. Designed in California, shipped worldwide.</p>
+      <div class="social-row">
+        <a class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg></a>
+        <a class="social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.45a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.88z"/></svg></a>
+        <a class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a>All Cases</a></li>
+        <li><a>iPhone 17 Cases</a></li>
+        <li><a>iPhone 16 Cases</a></li>
+        <li><a>iPhone 15 Cases</a></li>
+        <li><a>iPhone 14 Cases</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a>Contact Us</a></li>
+        <li><a>Track Order</a></li>
+        <li><a>Returns & Refunds</a></li>
+        <li><a>Shipping Info</a></li>
+        <li><a>FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col newsletter">
+      <h4>Stay In The Loop</h4>
+      <p style="font-size:13px;color:rgba(251,248,243,0.6);margin-bottom:16px;line-height:1.6">Get 10% off your first order, plus drops & exclusive designs.</p>
+      <input type="email" placeholder="your@email.com">
+      <button>Subscribe →</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Nexly™. All rights reserved. Designed in California.</p>
+    <div class="payment-icons">
+      <div class="payment-icon stripe">stripe</div>
+      <div class="payment-icon">VISA</div>
+      <div class="payment-icon">MC</div>
+      <div class="payment-icon">AMEX</div>
+      <div class="payment-icon">PYPL</div>
+      <div class="payment-icon">APAY</div>
+      <div class="payment-icon">GPAY</div>
+      <div class="payment-icon">KLAR</div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY -->
+<div class="sticky-atc">
+  <span class="price">$35</span>
+  <button onclick="addToCart()">Add to Cart →</button>
+</div>
+
+<script>
+function selectModel(btn, model){
+  document.querySelectorAll('.phone-option').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('modelLabel').textContent = model;
+}
+
+function selectColor(el, name){
+  document.querySelectorAll('.color-option').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('colorLabel').textContent = name;
+}
+
+function changeQty(delta){
+  const input = document.getElementById('qtyInput');
+  let val = parseInt(input.value) + delta;
+  if(val < 1) val = 1;
+  if(val > 10) val = 10;
+  input.value = val;
+}
+
+function changeImage(thumb, src){
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+  thumb.classList.add('active');
+  document.getElementById('mainImg').src = src;
+}
+
+function toggleFaq(item){
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+function addToCart(){
+  const btn = document.querySelector('.btn-add-cart');
+  const original = btn.innerHTML;
+  btn.innerHTML = '✓ Added to Cart';
+  btn.style.background = 'var(--success)';
+  const count = document.querySelector('.cart-count');
+  count.textContent = parseInt(count.textContent) + parseInt(document.getElementById('qtyInput').value);
+  setTimeout(()=>{
+    btn.innerHTML = original;
+    btn.style.background = '';
+  }, 2000);
+}
+
+function checkout(){
+  // Stripe Checkout integration point
+  // Replace with: window.location.href = 'YOUR_STRIPE_CHECKOUT_URL';
+  alert('Stripe checkout: Replace the checkout() function with your Stripe Payment Link or Checkout Session URL.');
+}
+</script>
+
+</body>
+</html>
